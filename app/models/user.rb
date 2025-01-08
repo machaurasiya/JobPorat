@@ -5,5 +5,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-        has_many :posts
+  has_many :posts
+
+  enum role: %i[admin employer job_seeker]
+  after_initialize :set_default_role, if: :new_record?
+
+  # set default role to job_seeker  if not set
+  def set_default_role
+    self.role ||= :job_seeker
+  end
+
 end
