@@ -1,0 +1,19 @@
+<%= form_with model: @post do |form| %>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+
+
+  <%= form.label :title, "Title :" %>
+  <%= form.text_field :title %><br><br>
+
+  <%= form.label :description, "description :" %>
+  <%= form.text_field :description %> <br><br>
+
+  <%= form.label :salary, "Salary:" %>
+  <%= form.text_field :salary %><br><br>
+
+  <%= form.label :location, "Location :" %>
+  <%= form.text_field :location %><br>
+
+
+  <%= form.submit %>
+<% end %>

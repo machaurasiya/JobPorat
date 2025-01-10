@@ -1,0 +1,16 @@
+
+<% if can? :create, Post %>
+<%= link_to 'Create a Post', new_post_path %>
+<% end %>
+
+
+<% @posts.each do |post| %>
+    <tr>
+      <td><%= post.title %></td>
+      <td><%= post.description %></td>
+      <td><%= post.salary %></td>
+      <td><%= post.location %></td><br><br>
+    </tr>
+<% end %>
+      
+      

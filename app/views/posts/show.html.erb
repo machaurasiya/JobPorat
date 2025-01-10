@@ -1,0 +1,12 @@
+
+    <tr>
+      <td><%= @post.title %></td>
+      <td><%= @post.description %></td>
+      <td><%= @post.salary %></td>
+      <td><%= @post.location %></td>
+    </tr>
+
+    <%= link_to "Destroy", post_path(@post), data: {
+      turbo_method: :delete,
+      turbo_confirm: "Are you sure?"
+    } %>
