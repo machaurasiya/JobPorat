@@ -1,22 +1,25 @@
 <h1>All Posts</h1>
 
 <% @posts.each do |post| %>
-  <div class = "bg-binary">
-    <%= post.title %>
-    <%= post.description %>
-    <%= post.salary %>
-    <%= post.location %>
-    <%= link_to 'See Post', post_path(post.id) %>
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5 class="card-title"><%= post.title %></h5>
+      <p class="card-text"><%= post.description %></p>
+      <p class="card-text"><strong>Salary:</strong> <%= post.salary %></p>
+      <p class="card-text"><strong>Location:</strong> <%= post.location %></p>
+      <%= link_to 'See Post', post_path(post.id), class: 'btn btn-primary' %>
+    </div>
   </div>
 <% end %>
 
-<%= link_to 'Home page', root_path %><br><br>
+<div>
+  <%= link_to 'Home page', root_path, class: 'btn btn-secondary' %>
 
-<% if can? :create, Post %>
-<%= link_to 'Create a Post', new_post_path %><br><br>
-<% end %>
+  <% if can? :create, Post %>
+    <%= link_to 'Create a Post', new_post_path, class: 'btn btn-success' %>
+  <% end %>
 
-<% if can? :create, Profile %>
-  <%= link_to 'Create a Profile', new_profile_path %>
-<% end %>
-   
+  <% if can? :create, Profile %>
+    <%= link_to 'Create a Profile', new_profile_path, class: 'btn btn-info' %>
+  <% end %>
+</div>
