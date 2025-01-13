@@ -37,13 +37,14 @@ class JobApplicationsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+  
   def destroy
     @job.destroy
     redirect_to post_job_application, status: :see_other
   end
 
   private
-  
+
   def job_application_params
     params.require(:job_application).permit(:user_id, :post_id, :resume, :status )
   end

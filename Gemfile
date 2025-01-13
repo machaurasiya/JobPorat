@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+# git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.1"
 
@@ -50,6 +50,11 @@ gem "bootsnap", require: false
 
 gem "devise" 
 gem 'cancancan'
+gem "bootstrap"
+gem "sassc-rails"
+gem 'mini_racer',platforms: :ruby
+
+
 
 
 group :development, :test do
