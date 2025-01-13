@@ -1,0 +1,24 @@
+<h1>Show Your Profile</h1>
+
+<% if @profile.image.attached? %>
+     <%= image_tag @profile.image,style: "width: 400px; height:300px" %>
+<% end %>
+<tr>
+     <td><%= @profile.name %></td>
+      <td><%= @profile.mobile %></td>
+      <td><%= @profile.gender %></td>
+      <td><%= @profile.date_of_birth %></td>
+      <td><%= @profile.address %></td>
+      <td><%= @profile.city %></td>
+      <td><%= @profile.pincode %></td>
+      <td><%= @profile.profile_summury %></td>
+ </tr><br><br>
+
+ <%= link_to 'Home page', root_path %><br><br>
+
+<% if can? :destroy, Profile %>
+ <%= link_to "Destroy", profile_path(@profile), data: {
+     turbo_method: :delete,
+     turbo_confirm: "Are you sure?"
+     } %> <br><br>
+<% end %>

@@ -1,0 +1,20 @@
+<%= form_with model: @job, url: post_job_applications_path(@post) do |form| %>
+    <div>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+    </div>
+    <div>
+      <%= form.hidden_field :post_id, value: @post.id %>
+    </div>
+    <div>
+      <%= form.label :resume, "Upload resume :" %>
+      <%= form.file_field :resume %><br><br>
+    </div>
+    <div>
+      <%= form.label :status, "status :" %>
+      <%= form.text_field :status %><br><br>
+    </div>
+    <div>
+      <%= form.submit %>
+    </div>
+  <% end %>
+  

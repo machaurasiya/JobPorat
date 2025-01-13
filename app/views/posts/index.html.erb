@@ -1,16 +1,22 @@
-
-<% if can? :create, Post %>
-<%= link_to 'Create a Post', new_post_path %>
-<% end %>
-
+<h1>All Posts</h1>
 
 <% @posts.each do |post| %>
     <tr>
       <td><%= post.title %></td>
       <td><%= post.description %></td>
       <td><%= post.salary %></td>
-      <td><%= post.location %></td><br><br>
+      <td><%= post.location %></td>
+      <%= link_to 'See Post', post_path(post.id) %><br><br>
     </tr>
+<% end %><br><br>
+
+<%= link_to 'Home page', root_path %><br><br>
+
+<% if can? :create, Post %>
+<%= link_to 'Create a Post', new_post_path %><br><br>
 <% end %>
-      
-      
+
+<% if can? :create, Profile %>
+  <%= link_to 'Create a Profile', new_profile_path %>
+<% end %>
+   

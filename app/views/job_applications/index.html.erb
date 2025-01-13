@@ -1,0 +1,13 @@
+<h1>All Job Page</h1>
+
+<% @jobs.each do |job| %>
+  <% if job.resume.attached? %>
+    <%= image_tag job.resume, style: "width: 400px; height:300px" %>
+  <% end %>  
+    <tr>
+      <td><%= job.status %></td>
+      <%= link_to 'See applied job', post_job_application_path(job.post_id, job.id) %><br><br>
+    </tr>
+<% end %>
+
+<%= link_to 'Home page', root_path %><br><br>

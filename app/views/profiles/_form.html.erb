@@ -1,0 +1,55 @@
+<%= form_with model: @profile do |form| %>
+    <div>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+    </div>
+  
+    <div>
+      <%= form.label :title, "Name :" %>
+      <%= form.text_field :name %><br><br>
+    </div>
+  
+    <div>
+      <%= form.label :title, "Mobile :" %>
+      <%= form.text_field :mobile %><br><br>
+    </div>
+  
+    <div>
+      <%= form.label :title, "Gender :" %>
+      <%= form.text_field :gender %><br><br>
+    </div>
+  
+    <div>
+      <%= form.label :title, "Date of birth :" %>
+      <%= form.text_field :date_of_birth %><br><br>
+    </div>
+  
+    <div>
+      <%= form.label :title, "Address :" %>
+      <%= form.text_field :address %><br><br>
+    </div>
+  
+    <div>
+      <%= form.label :title, "City :" %>
+      <%= form.text_field :city %><br><br>
+    </div>
+  
+    <div>
+      <%= form.label :title, "Pincode :" %>
+      <%= form.text_field :pincode %><br><br>
+    </div>
+  
+    <div>
+      <%= form.label :title, "Profile summury :" %>
+      <%= form.text_field :profile_summury %><br><br>
+    </div>
+  
+    <div>
+      <%= form.label :image, "Upload_image :" %>
+      <%= form.file_field :image %><br><br>
+    </div>
+  
+    <div>
+      <%= form.submit %>
+    </div>
+  <% end %>
+  

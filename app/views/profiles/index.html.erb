@@ -1,0 +1,22 @@
+<h1>Show All Profiles</h1>
+
+<% @profiles.each do |profile| %>
+    <% if profile.image.attached? %>
+      <%= image_tag profile.image,style: "width: 400px; height:300px" %>
+    <% end %>
+    <td><%= profile.name %></td>
+    <td><%= profile.mobile %></td>
+    <td><%= profile.gender %></td>
+    <td><%= profile.date_of_birth %></td>
+    <td><%= profile.address %></td>
+    <td><%= profile.city %></td>
+    <td><%= profile.pincode %></td>
+    <td><%= profile.profile_summury %></td>
+    <%= link_to 'See Profile', profile_path(profile.id) %><br><br>
+<% end %><br><br>
+
+<%= link_to 'Home page', root_path %><br><br>
+
+<% if can? :create, Profile %>
+<%= link_to 'Create a Profile', new_profile_path %>
+<% end %>

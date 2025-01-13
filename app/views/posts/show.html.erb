@@ -1,12 +1,25 @@
+<h1>Show Your Post</h1>
 
-    <tr>
-      <td><%= @post.title %></td>
-      <td><%= @post.description %></td>
-      <td><%= @post.salary %></td>
-      <td><%= @post.location %></td>
-    </tr>
+<tr>
+  <td><%= @post.title %></td>
+  <td><%= @post.description %></td>
+  <td><%= @post.salary %></td>
+  <td><%= @post.location %></td>
+</tr><br><br>
 
-    <%= link_to "Destroy", post_path(@post), data: {
-      turbo_method: :delete,
-      turbo_confirm: "Are you sure?"
-    } %>
+<%= link_to 'Home page', root_path %><br><br>
+
+<% if can? :destroy, Post %>
+  <%= link_to "Destroy", post_path(@post), data: {
+    turbo_method: :delete,
+    turbo_confirm: "Are you sure?"
+  } %> <br><br>
+<% end %>
+
+<% if can? :create, JobApplication %>
+  <%= link_to " Apply Jobs ", new_post_job_application_path(@post) %><br><br>
+<% end %>
+
+<% if can? :read, Post %>
+  <%= link_to 'Read Posts', posts_path %><br><br>
+<% end %>
