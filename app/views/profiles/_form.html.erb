@@ -1,55 +1,57 @@
 <%= form_with model: @profile do |form| %>
-    <div>
+  <div class="container">
+    <div class="mb-3">
       <%= form.hidden_field :user_id, value: current_user.id %>
     </div>
-  
-    <div>
-      <%= form.label :title, "Name :" %>
-      <%= form.text_field :name %><br><br>
+
+    <div class="mb-3">
+      <%= form.label :title, "Name :", class: "form-label" %>
+      <%= form.text_field :name, class: "form-control" %>
     </div>
-  
-    <div>
-      <%= form.label :title, "Mobile :" %>
-      <%= form.text_field :mobile %><br><br>
+
+    <div class="mb-3">
+      <%= form.label :title, "Mobile :", class: "form-label" %>
+      <%= form.text_field :mobile, class: "form-control" %>
     </div>
-  
-    <div>
-      <%= form.label :title, "Gender :" %>
-      <%= form.text_field :gender %><br><br>
+
+    <div class="mb-3">
+      <%= form.label :title, "Gender :", class: "form-label" %>
+      <%= form.text_field :gender, class: "form-control" %>
     </div>
-  
-    <div>
-      <%= form.label :title, "Date of birth :" %>
-      <%= form.text_field :date_of_birth %><br><br>
+
+    <div class="mb-3">
+      <%= form.label :title, "Date of birth :", class: "form-label" %>
+      <%= form.text_field :date_of_birth, class: "form-control" %>
     </div>
-  
-    <div>
-      <%= form.label :title, "Address :" %>
-      <%= form.text_field :address %><br><br>
+
+    <div class="mb-3">
+      <%= form.label :title, "Address :", class: "form-label" %>
+      <%= form.text_field :address, class: "form-control" %>
     </div>
-  
-    <div>
-      <%= form.label :title, "City :" %>
-      <%= form.text_field :city %><br><br>
+
+    <div class="mb-3">
+      <%= form.label :title, "City :", class: "form-label" %>
+      <%= form.text_field :city, class: "form-control" %>
     </div>
-  
-    <div>
-      <%= form.label :title, "Pincode :" %>
-      <%= form.text_field :pincode %><br><br>
+
+    <div class="mb-3">
+      <%= form.label :title, "Pincode :", class: "form-label" %>
+      <%= form.text_field :pincode, class: "form-control" %>
     </div>
-  
-    <div>
-      <%= form.label :title, "Profile summury :" %>
-      <%= form.text_field :profile_summury %><br><br>
+
+    <div class="mb-3">
+      <%= form.label :title, "Profile summury :", class: "form-label" %>
+      <%= form.text_field :profile_summury, class: "form-control" %>
     </div>
-  
-    <div>
-      <%= form.label :image, "Upload_image :" %>
-      <%= form.file_field :image %><br><br>
+
+    <div class="mb-3">
+      <%= form.label :image, "Upload_image :", class: "form-label" %>
+      <%= form.file_field :image %>
     </div>
-  
-    <div>
-      <%= form.submit %>
+
+    <div class="mb-3">
+      <%= form.submit "submit", class: "btn btn-primary btn-lg"%>
     </div>
-  <% end %>
+  </div>
+<% end %>
   

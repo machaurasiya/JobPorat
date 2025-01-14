@@ -1,20 +1,30 @@
 <%= form_with model: @job, url: post_job_applications_path(@post) do |form| %>
-    <div>
+  <div class="container d-flex justify-content-center">
+    <div class="mb-3 mt-3">
       <%= form.hidden_field :user_id, value: current_user.id %>
     </div>
-    <div>
+
+    <div class="mb-3">
       <%= form.hidden_field :post_id, value: @post.id %>
     </div>
-    <div>
-      <%= form.label :resume, "Upload resume :" %>
-      <%= form.file_field :resume %><br><br>
+
+    <div class="mb-3">
+      <%= form.label :resume, "Upload resume :", class: "form-label" %>
+      <%= form.file_field :resume %>
     </div>
-    <div>
-      <%= form.label :status, "status :" %>
-      <%= form.text_field :status %><br><br>
+  </div>
+
+  <div class="container d-flex justify-content-center ">
+    <div class="mb-3">
+      <%= form.label :status, "status :", class: "form-label" %>
+      <%= form.text_field :status, class: "form-control" %>
     </div>
-    <div>
-      <%= form.submit %>
+  </div>
+
+  <div class="container d-flex justify-content-center ">
+    <div class="mt-3">
+      <%= form.submit "Apply Job", class: "btn btn-primary btn-lg" %>
     </div>
-  <% end %>
+  </div>
+<% end %>
   

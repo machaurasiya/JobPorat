@@ -21,7 +21,8 @@ class JobApplicationsController < ApplicationController
     @job = @post.job_applications.new(job_application_params)
 
     if @job.save
-      redirect_to post_job_application_path(@post, @job), notice: "you applied this job"
+      # redirect_to post_job_application_path(@post, @job), notice: "you applied this job"
+      redirect_to post_path(@post), notice: "you applied this job"
     else
       render :new
     end

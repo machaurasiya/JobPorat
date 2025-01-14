@@ -1,13 +1,27 @@
-<h1>Show Your Application</h1>
+<h1 class="text-center mb-4">Show Your Application</h1>
 
-<% if @job.resume.attached? %>
-    <%= image_tag @job.resume, style: "width: 400px; height:300px" %>
-<% end %>
-<%= @job.status %><br>
-<%= link_to 'Home page', root_path %><br><br>
-<% if can? :destroy, JobApplication %>
+<div class="container">
+  <div class="card">
+    <div class="card-body d-flex align-items-center">
+      <% if @job.resume.attached? %>
+        <div class="me-4">
+          <%= image_tag @job.resume, style: "width: 350px; height: auto;" %>
+        </div>
+      <% end %>
+      
+      <div>
+        <h2 class="card-title"><%= @job.status %></h2>
+        <%= link_to 'Back to job page', post_job_applications_path(@job.post_id), class: 'btn btn-primary btn-lg' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-3">
+  <% if can? :destroy, JobApplication %>
     <%= link_to "Destroy", post_path(@post), data: {
-        turbo_method: :delete,
-        turbo_confirm: "Are you sure?"
-        } %> <br><br>
-<% end %>
+      turbo_method: :delete,
+      turbo_confirm: "Are you sure?"
+    }, class: 'btn btn-danger btn-lg' %>
+  <% end %>
+</div>

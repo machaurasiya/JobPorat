@@ -1,24 +1,27 @@
-<h1>Show Your Profile</h1>
+<h1 class="text-center mb-4">Profile</h1>
 
-<% if @profile.image.attached? %>
-     <%= image_tag @profile.image,style: "width: 400px; height:300px" %>
-<% end %>
-<tr>
-     <td><%= @profile.name %></td>
-      <td><%= @profile.mobile %></td>
-      <td><%= @profile.gender %></td>
-      <td><%= @profile.date_of_birth %></td>
-      <td><%= @profile.address %></td>
-      <td><%= @profile.city %></td>
-      <td><%= @profile.pincode %></td>
-      <td><%= @profile.profile_summury %></td>
- </tr><br><br>
+<div class="container mb-4 mt-4">
+     <div class="card">
+          <div class="row justify-content-md-center">
+               <div class="card-body col-4">
+                    <% if @profile.image.attached? %>
+                    <%= image_tag @profile.image,style: "width: 400px; height:300px" %>
+                    <% end %>
+               </div>
 
- <%= link_to 'Home page', root_path %><br><br>
-
-<% if can? :destroy, Profile %>
- <%= link_to "Destroy", profile_path(@profile), data: {
-     turbo_method: :delete,
-     turbo_confirm: "Are you sure?"
-     } %> <br><br>
-<% end %>
+               <div class="card-body col-8">
+                    <h5 class="card-title"><%= @profile.name %></h5>
+                    <p class="card-text"><%= @profile.mobile %></p>
+                    <p class="card-text"><%= @profile.gender %></p>
+                    <p class="card-text"><%= @profile.date_of_birth %></p>
+                    <p class="card-text"><%= @profile.address %></p>
+                    <p class="card-text"><%= @profile.city %></p>
+                    <p class="card-text"><%= @profile.pincode %></p>
+                    <p class="card-text"><%= @profile.profile_summury %></p>
+               </div>
+          </div>
+          <div class="card-body my-3">
+               <%= link_to 'Profile page', profiles_path, class: 'btn btn-primary' %>
+          </div>
+     </div>
+</div>

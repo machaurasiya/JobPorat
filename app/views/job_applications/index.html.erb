@@ -1,13 +1,18 @@
-<h1>All Job Page</h1>
+<h1 class="text-center mb-4">All Job Page</h1>
 
 <% @jobs.each do |job| %>
-  <% if job.resume.attached? %>
-    <%= image_tag job.resume, style: "width: 400px; height:300px" %>
-  <% end %>  
-    <tr>
-      <td><%= job.status %></td>
-      <%= link_to 'See applied job', post_job_application_path(job.post_id, job.id) %><br><br>
-    </tr>
-<% end %>
+  <div class="container mb-4 mt-4 d-flex">
+    <div class="card mx-3>
+      <div class="card-body my-3 mx-3">
+        <% if job.resume.attached? %>
+          <%= image_tag job.resume, style: "width: 350px; height:250px" %>
+        <% end %>
+      </div>
 
-<%= link_to 'Home page', root_path %><br><br>
+      <div class="card-body my-3 mx-3">
+        <h2 class="card-text"><%= job.status %></h2><br>
+        <%= link_to 'See applied job', post_job_application_path(job.post_id, job.id), class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div> 
+<% end %>
