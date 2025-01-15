@@ -9,6 +9,9 @@
         <p class="card-text"><strong>Salary:</strong> <%= post.salary %></p>
         <p class="card-text"><strong>Location:</strong> <%= post.location %></p>
         <%= link_to 'See Post', post_path(post.id), class: 'btn btn-primary' %>
+        <% if can? :read, JobApplication %>
+          <%= link_to 'See Jobs', post_job_applications_path(post.id), class: 'btn btn-info' %>
+        <% end %>
       </div>
     </div>
   </div>
