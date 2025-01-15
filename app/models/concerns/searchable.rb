@@ -17,7 +17,7 @@ module Searchable
             query: {
               multi_match: {
                 query: query,
-                fields: ['title', ''],
+                fields: ['title', 'location'],
                 fuzziness: "AUTO"
               }
             }

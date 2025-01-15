@@ -4,8 +4,13 @@ class PostsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    # @posts = params[:q].present? ? Post.search(params[:q]) : Post.all
-    @posts = Post.where("location LIKE ?", "indore")
+    if params[:q].present?
+      @posts = Post.where("title LIKE ? OR location LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")
+    else
+      @posts = Post.all
+    end
+  
+    # @posts = Post.where("location LIKE ?", params[:q])
   end
 
   def show
