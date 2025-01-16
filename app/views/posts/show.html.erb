@@ -20,6 +20,10 @@
         <% if can? :read, Post %>
           <%= link_to 'Back to Posts', posts_path, class: 'btn btn-info' %>
         <% end %>
+
+        <% if can? :read, JobApplication %>
+          <%= link_to 'See Applied Jobs', post_job_applications_path(@post), class: 'btn btn-info' %>
+        <% end %>
       </div>
     </div>
   </div>

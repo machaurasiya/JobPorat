@@ -1,12 +1,4 @@
-<p style="color: green"><%= notice %></p>
-
 <h1 class="text-center mb-4">All Posts</h1>
-
-<%= form_tag posts_path, method: :get, role: 'search' do %>
-  <%= text_field_tag :q, params[:q], placeholder: 'Search Posts ...' %>
-  <%= submit_tag 'Search' %>
-<% end %>
-<div id="posts">
 
 <% @posts.each do |post| %>
   <div class="container mb-4 mt-4">
