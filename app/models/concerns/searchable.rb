@@ -7,8 +7,8 @@ module Searchable
   
       mapping do
         # mapping definition goes here
-        indexes :title, type: 'string'
-        indexes :location, type: 'string'
+        indexes :title, type: 'text'
+        indexes :location, type: 'text'
       end
   
       def self.search(query)
