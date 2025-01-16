@@ -4,8 +4,8 @@
   <div class="container mb-4 mt-4 d-flex">
     <div class="card mx-3>
       <div class="card-body my-3 mx-3">
-        <% if job.resume.attached? %>
-          <%= image_tag job.resume, style: "width: 350px; height:250px" %>
+        <% if job.resume.present? %>
+          <%= image_tag job.resume.url, style: "width: 350px; height:250px" %>
         <% end %>
       </div>
 
