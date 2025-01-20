@@ -9,15 +9,11 @@
   </div>
 </div>
 
-<% if current_user == @job_application.post.user || current_user.admin? %>
+<% if current_user == @job.post.user || current_user.admin? %>
   <h3>Update Status</h3>
   <%= form_with(url: update_status_post_job_application_path(@job.post, @job), method: :patch) do |f| %>
     <%= f.label :status, "Change Status" %>
-    <select name="status" id="status">
-      <option value="under_review" <%= 'selected' if @job.status == 'under_review' %>>Under Review</option>
-      <option value="accepted" <%= 'selected' if @job.status == 'accepted' %>>Accepted</option>
-      <option value="rejected" <%= 'selected' if @job.status == 'rejected' %>>Rejected</option>
-    </select>
+    <%= f.select :status, ["under_review", "accepted", "rejected"] %>
     <%= f.submit "Update Status" %>
   <% end %>
 <% end %>

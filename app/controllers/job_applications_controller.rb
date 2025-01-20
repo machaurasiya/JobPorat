@@ -5,8 +5,16 @@ class JobApplicationsController < ApplicationController
   load_and_authorize_resource 
 
   def index
-    @jobs = @post.job_applications.all
-    # @jobs = current_user.job_applications.all
+    if current_user.admin?
+      @jobs = @post.job_applications.all
+    elsif current_user.employer?
+      if @post.user_id == current_user.id
+        @jobs = @post.job_applications.all
+      end
+    elsif current_user.job_seeker?
+      # @jobs = @job_applications.where(post_id: params[:post_id])
+      @jobs = current_user.job_applications.where(post: @post)
+    end
   end
 
   def show
@@ -53,6 +61,8 @@ class JobApplicationsController < ApplicationController
     if @job.update(status: params[:status]) 
       redirect_to post_job_application_path(@post, @job), notice: 'Job application status updated successfully.'
     else
+      redirect_to post_job_application_path(@post, @job), alert: 'Failed to update the status.'
+    end
   end
 
   private

@@ -12,6 +12,8 @@ class Ability
       can :read, JobApplication, post: { user_id: user.id }
       can :update, JobApplication, post: { user_id: user.id }
       can :destroy, JobApplication, post: { user_id: user.id }
+      can :update_status, JobApplication, post: { user_id: user.id }
+
       # can :create, JobApplication
 
       can :create, Post  
