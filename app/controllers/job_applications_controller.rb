@@ -1,20 +1,34 @@
 class JobApplicationsController < ApplicationController
   before_action :set_post
-  before_action :set_job, only: [:show, :edit, :update, :destroy] 
+  before_action :set_job, only: [:show, :edit, :update, :destroy, :update_status] 
   before_action :authenticate_user!
   load_and_authorize_resource 
 
   def index
-    @jobs = @post.job_applications.all
+    if current_user.admin?
+      @jobs = @post.job_applications.all
+    elsif current_user.employer?
+      if @post.user_id == current_user.id
+        @jobs = @post.job_applications
+      end
+    elsif current_user.job_seeker?
+      # @jobs = current_user.job_applications
+      # @jobs = @job_applications.where(post_id: params[:post_id])
+      @jobs = current_user.job_applications.where(post: @post)
+    else
+      redirect_to post_job_applications_path, notice: "you are not authorised to perform this task "
+    end
   end
 
   def show
   end
 
   def new 
-    @job = @post.job_applications.new
-    authorize! :create, @job #if authorised then create a job
-    render :new
+    if current_user.job_applications.exists?(post_id: @post.id)
+      redirect_to post_path(@post), notice: "You have already applied for this job." 
+    else
+      @job = JobApplication.new
+    end
   end
 
   def create
@@ -42,6 +56,16 @@ class JobApplicationsController < ApplicationController
   def destroy
     @job.destroy
     redirect_to post_job_application, status: :see_other
+  end
+
+  def update_status
+    authorize! :update, @job
+
+    if @job.update(status: params[:status]) 
+      redirect_to post_job_application_path(@post, @job), notice: 'Job application status updated successfully.'
+    else
+      redirect_to post_job_application_path(@post, @job), alert: 'Failed to update the status.'
+    end
   end
 
   private

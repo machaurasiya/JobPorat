@@ -43,7 +43,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_09_041124) do
     t.integer "user_id"
     t.integer "post_id"
     t.string "resume"
-    t.string "status"
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_job_applications_on_post_id"
