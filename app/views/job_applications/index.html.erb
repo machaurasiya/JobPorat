@@ -1,6 +1,6 @@
-<h1 class="text-center mb-4">All Job Page</h1>
+<h1 class="text-center mb-4">All Job Applications</h1>
 
-
+<% if current_user.admin? %> 
   <% @jobs.each do |job| %>
     <div class="container">
       <div class="card my-3 mx-3">
@@ -17,3 +17,38 @@
       </div>
     </div> 
   <% end %>
+
+<% elsif current_user.employer? %> 
+  <% @jobs.each do |job| %>
+    <% if job.post.user == current_user %>
+      <div class="container">
+        <div class="card my-3 mx-3">
+          <div class="card">
+              <h1>Job Application for: <%= job.post.title %></h1>
+              <h4 class="card-title">Status: <%= job.status %></h4>
+          </div>
+
+          <div class="card-body my-3 mx-3">
+            <% if can? :read, JobApplication %>
+              <%= link_to 'See applied job', post_job_application_path(job.post_id, job.id), class: 'btn btn-primary' %>
+            <% end %>
+          </div>
+        </div>
+      </div> 
+    <% end %>
+  <% end %>
+
+<% else %> 
+  <% @jobs.each do |job| %>
+    <% if job.user == current_user %>
+      <div class="container">
+        <div class="card my-3 mx-3">
+          <div class="card">
+              <h1>Job Application for: <%= job.post.title %></h1>
+              <h4 class="card-title">Status: <%= job.status %></h4>
+          </div>
+        </div>
+      </div> 
+    <% end %>
+  <% end %>
+<% end %>

@@ -8,12 +8,17 @@
       <%= link_to 'Back to job page', post_job_applications_path(@job.post_id), class: 'btn btn-primary w-25 ms-3' %>
   </div>
 </div>
-
-<% if current_user == @job.post.user || current_user.admin? %>
-  <h3>Update Status</h3>
-  <%= form_with(url: update_status_post_job_application_path(@job.post, @job), method: :patch) do |f| %>
-    <%= f.label :status, "Change Status" %>
-    <%= f.select :status, ["under_review", "accepted", "rejected"] %>
-    <%= f.submit "Update Status" %>
-  <% end %>
-<% end %>
+<div class="container">
+  <div class="card">
+    <% if can? :update_status, JobApplication%>
+      <% if current_user == @job.post.user || current_user.admin? %>
+        <h3 class = "text-center">Update Status</h3>
+        <%= form_with(url: update_status_post_job_application_path(@job.post, @job), method: :patch) do |f| %>
+          <%= f.label :status, "Change Status" %>
+          <%= f.select :status, ["underReview", "accepted", "rejected"] %>
+          <%= f.submit "Update Status" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

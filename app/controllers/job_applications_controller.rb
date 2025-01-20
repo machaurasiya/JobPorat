@@ -1,6 +1,6 @@
 class JobApplicationsController < ApplicationController
   before_action :set_post
-  before_action :set_job, only: [:show, :edit, :update, :destroy] 
+  before_action :set_job, only: [:show, :edit, :update, :destroy, :update_status] 
   before_action :authenticate_user!
   load_and_authorize_resource 
 
@@ -9,11 +9,14 @@ class JobApplicationsController < ApplicationController
       @jobs = @post.job_applications.all
     elsif current_user.employer?
       if @post.user_id == current_user.id
-        @jobs = @post.job_applications.all
+        @jobs = @post.job_applications
       end
     elsif current_user.job_seeker?
+      # @jobs = current_user.job_applications
       # @jobs = @job_applications.where(post_id: params[:post_id])
       @jobs = current_user.job_applications.where(post: @post)
+    else
+      redirect_to post_job_applications_path, notice: "you are not authorised to perform this task "
     end
   end
 
@@ -21,9 +24,11 @@ class JobApplicationsController < ApplicationController
   end
 
   def new 
-    @job = @post.job_applications.new
-    authorize! :create, @job #if authorised then create a job
-    render :new
+    if current_user.job_applications.exists?(post_id: @post.id)
+      redirect_to post_path(@post), notice: "You have already applied for this job." 
+    else
+      @job = JobApplication.new
+    end
   end
 
   def create
@@ -54,8 +59,6 @@ class JobApplicationsController < ApplicationController
   end
 
   def update_status
-    @post = Post.find(params[:post_id])
-    @job = @post.job_applications.find(params[:id])
     authorize! :update, @job
 
     if @job.update(status: params[:status]) 

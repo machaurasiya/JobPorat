@@ -10,11 +10,17 @@
 
       <div>        
         <% if can? :destroy, Post %>
-          <%= link_to "Destroy", post_path(@post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-danger' %>
+          <% if current_user == @post.user %>
+            <%= link_to "Destroy", post_path(@post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-danger' %>
+          <% end %>
         <% end %>
 
-        <% if can? :create, JobApplication %>
-          <%= link_to "Apply for Job", new_post_job_application_path(@post), class: 'btn btn-primary' %>
+        <% if current_user.job_applications.exists?(post_id: @post.id) %>
+          <%= link_to "Applied", "#", class: 'btn btn-secondary disabled' %>
+        <% else %>
+          <% if can? :create, JobApplication %>
+            <%= link_to "Apply for Job", new_post_job_application_path(@post), class: 'btn btn-primary' %>
+          <% end %>
         <% end %>
 
         <% if can? :read, Post %>
@@ -22,7 +28,9 @@
         <% end %>
 
         <% if can? :read, JobApplication %>
-          <%= link_to 'See Applied Jobs', post_job_applications_path(@post), class: 'btn btn-info' %>
+          <% if current_user == @post.user %>
+            <%= link_to 'See Applied Jobs', post_job_applications_path(@post), class: 'btn btn-info' %>
+          <% end %>
         <% end %>
       </div>
     </div>
