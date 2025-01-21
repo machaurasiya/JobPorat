@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :posts
   has_many :job_applications
-  has_one :profile
+  has_many :profiles
 
   enum role: %i[admin employer job_seeker]
   after_initialize :set_default_role, if: :new_record?

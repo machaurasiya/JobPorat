@@ -4,7 +4,13 @@ class PostsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @posts = Post.all
+    # if params[:q].present?
+    #   @posts = Post.where("title LIKE ? OR location LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")# where for normal query 
+    # else
+    #   @posts = Post.all
+    # end
+    # @posts = Post.where("location LIKE ?", params[:q])
+    @posts = params[:q].present? ? Post.search(params[:q]) : Post.all # search for elastic search query
   end
 
   def show
@@ -20,9 +26,9 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      redirect_to @post
+      redirect_to @post, notice: "Post created successfully"
     else
-      render :new
+      render :new, status: "Something went wrong"
     end
   end
 

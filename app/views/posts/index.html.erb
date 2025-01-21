@@ -1,20 +1,57 @@
-<h1 class="text-center mb-4">All Posts</h1>
+<% if current_user.employer? %> 
+  <h1 class="text-center">Your Posts</h1>
+  <% @posts.each do |post| %>
+    <% if post.user == current_user %>
+      <div class="container mb-4 mt-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title"><%= post.title %></h5>
+            <p class="card-text"><%= post.description %></p>
+            <p class="card-text"><strong>Salary:</strong> <%= post.salary %></p>
+            <p class="card-text"><strong>Location:</strong> <%= post.location %></p>
+            <%= link_to 'See Post', post_path(post.id), class: 'btn btn-primary' %>
+            <% if can? :read, JobApplication %>
+              <%= link_to 'See Jobs', post_job_applications_path(post.id), class: 'btn btn-info' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 
-<% @posts.each do |post| %>
-  <div class="container mb-4 mt-4">
-    <div class="card mb-4">
-      <div class="card-body">
-        <h5 class="card-title"><%= post.title %></h5>
-        <p class="card-text"><%= post.description %></p>
-        <p class="card-text"><strong>Salary:</strong> <%= post.salary %></p>
-        <p class="card-text"><strong>Location:</strong> <%= post.location %></p>
-        <%= link_to 'See Post', post_path(post.id), class: 'btn btn-primary' %>
-        <% if can? :read, JobApplication %>
-          <%= link_to 'See Jobs', post_job_applications_path(post.id), class: 'btn btn-info' %>
-        <% end %>
+  <h1 class="text-center">All Other Posts</h1>
+  <% @posts.each do |post| %>
+    <% if post.user != current_user %>
+      <div class="container mb-4 mt-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title"><%= post.title %></h5>
+            <p class="card-text"><%= post.description %></p>
+            <p class="card-text"><strong>Salary:</strong> <%= post.salary %></p>
+            <p class="card-text"><strong>Location:</strong> <%= post.location %></p>
+            <%= link_to 'See Post', post_path(post.id), class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% else %> 
+  <% @posts.each do |post| %>
+    <div class="container mb-4 mt-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title"><%= post.title %></h5>
+          <p class="card-text"><%= post.description %></p>
+          <p class="card-text"><strong>Salary:</strong> <%= post.salary %></p>
+          <p class="card-text"><strong>Location:</strong> <%= post.location %></p>
+          <%= link_to 'See Post', post_path(post.id), class: 'btn btn-primary' %>
+          <% if current_user.role == 'admin' %>
+            <%= link_to 'See Jobs', post_job_applications_path(post.id), class: 'btn btn-info' %>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
 
 <div class="container">
