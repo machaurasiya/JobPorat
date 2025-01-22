@@ -22,14 +22,14 @@ class Ability
       can :create, Profile  
       can :read, Profile
       can :update, Profile, user_id: user.id
-      # can :destroy, Profile, user_id: user.id 
+      can :destroy, Profile, user_id: user.id 
     else
       can :read, Post
       can :read, JobApplication, user_id: user.id 
       can :create, JobApplication
       can :read, Profile
       can :create, Profile
-      # can :destroy, Profile, user_id: user.id
+      can :destroy, Profile, user_id: user.id
       can :update, Profile, user_id: user.id 
     end
   end

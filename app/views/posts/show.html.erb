@@ -10,7 +10,7 @@
 
       <div>        
         <% if can? :destroy, Post %>
-          <% if current_user == @post.user %>
+          <% if current_user == @post.user || current_user.admin?%>
             <%= link_to "Destroy", post_path(@post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-danger' %>
           <% end %>
         <% end %>
@@ -28,7 +28,7 @@
         <% end %>
 
         <% if can? :read, JobApplication %>
-          <% if current_user == @post.user %>
+          <% if current_user == @post.user || current_user.admin? || current_user.job_seeker? %>
             <%= link_to 'See Applied Jobs', post_job_applications_path(@post), class: 'btn btn-info' %>
           <% end %>
         <% end %>
