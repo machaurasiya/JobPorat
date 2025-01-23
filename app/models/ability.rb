@@ -8,12 +8,13 @@ class Ability
 
     if user.admin?
       can :manage, :all  
+      can :manage, :Company, user_id: user.id
     elsif user.employer?
       can :read, JobApplication, post: { user_id: user.id }
       can :update, JobApplication, post: { user_id: user.id }
       can :destroy, JobApplication, post: { user_id: user.id }
       can :update_status, JobApplication, post: { user_id: user.id }
-      can :create, JobApplication
+      can :read, Company  
 
       can :create, Post  
       can :read, Post
@@ -31,6 +32,7 @@ class Ability
       can :create, Profile
       can :destroy, Profile, user_id: user.id
       can :update, Profile, user_id: user.id 
+      can :read, Company
     end
   end
 end

@@ -1,0 +1,12 @@
+<h1>All Companies</h1>
+
+<% @companies.each do |company| %>
+  <div class="container mb-4 mt-4">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title"><%= company.name %></h5>
+        <p class="card-text"><%= company.about %></p>
+      </div>
+    </div>
+  </div>
+<% end %>
