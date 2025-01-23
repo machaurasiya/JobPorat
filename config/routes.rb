@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # devise_for :users
+  devise_for :users
   root to: "home#index" 
   
   resources :posts do 
@@ -11,9 +11,4 @@ Rails.application.routes.draw do
   end
   
   resources :profiles
-
-  devise_for :users, controllers: {
-        sessions: 'users/sessions'
-      }
-
 end
