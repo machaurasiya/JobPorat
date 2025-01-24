@@ -7,6 +7,8 @@ class JobApplication < ApplicationRecord
 	enum status: %i[underReview accepted rejected]
 
 	after_initialize :set_default_status, if: :new_record?
+  
+  private
 
 	def set_default_status
 	  self.status ||= :underReview

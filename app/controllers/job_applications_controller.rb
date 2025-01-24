@@ -36,6 +36,8 @@ class JobApplicationsController < ApplicationController
 
     if @job.save
       # redirect_to post_job_application_path(@post, @job), notice: "you applied this job"
+      # SendConfirmationMailJob.set(wait: 1.minutes).perform_later(@job.user)
+      SendConfirmationMailJob.perform_later(@job.user)
       redirect_to post_path(@post), notice: "you applied this job"
     else
       render :new
