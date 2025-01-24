@@ -58,6 +58,10 @@ gem 'mini_racer',platforms: :ruby
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'carrierwave', '~> 3.0'
+gem 'sidekiq'
+gem 'redis'
+gem 'redis-rails'
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
