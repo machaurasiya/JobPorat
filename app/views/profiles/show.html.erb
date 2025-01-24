@@ -23,8 +23,12 @@
 
     <div class="card-body my-3">
       <%= link_to 'Profile page', profiles_path, class: 'btn btn-primary' %>
-        <% if can? :destroy, Profile %>
+        <% if can? :destroy, Profile%>
           <%= link_to 'Delete Profile', profile_path(@profile), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-danger'  %>
+        <% end %>
+
+        <% if can? :update, Profile%>
+          <%= link_to 'Update Profile', edit_profile_path(params[:id]), class: 'btn btn-primary'  %>
         <% end %>
     </div>
   </div>

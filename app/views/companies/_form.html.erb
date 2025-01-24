@@ -1,0 +1,21 @@
+<%= form_with model: @company, class: "needs-validation", novalidate: true, local: true do |form| %>
+  <div class="container">
+    <div class="mb-3">
+      <%= form.hidden_field :user_id, value: current_user.id %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :name, "Name:", class: "form-label" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :about, "About:", class: "form-label" %>
+      <%= form.text_field :about, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.submit "Submit", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

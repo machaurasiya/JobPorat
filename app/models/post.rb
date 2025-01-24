@@ -1,7 +1,8 @@
 class Post < ApplicationRecord
   include Searchable
 
-  validates :title, :description, :salary, :location, presence: true
   belongs_to :user
+  belongs_to :company
   has_many :job_applications
+  validates :title, :description, :salary, :location, presence: true
 end
