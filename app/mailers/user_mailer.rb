@@ -6,13 +6,19 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Welcome to My Job Portal')
   end
 
-  def confirmation_mail(user)
+  def confirmation_mail(user, job_application)
     @user = user
+    @job_application = job_application
+    @post = @job_application.post
+    @company = @post.company
+
     mail(to: @user.email, subject: 'Confirmation Mail')
   end
 
-  def status_update_mail(user)
+  def status_update_mail(user, job_application)
     @user = user
+    @job_application = job_application
+
     mail(to: @user.email, subject: 'Status Update')
   end
 end

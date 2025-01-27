@@ -1,6 +1,9 @@
 <h1>Confirmaition mail, <%= @user.email %></h1>
   <p>
-    You have successfully job applied,
-    your username is: <%= @user.email %><br>
+    You have successfully applied for the job.<br>
+    Company: <%= @company.name %><br>  
+    Job Title: <%= @post.title %><br>
+    Job Location: <%= @post.location %><br>
+    Job Status: <%= @job_application.status %><br>
   </p>
 <p>Thanks for joining and have a great day!</p>

@@ -35,9 +35,8 @@ class JobApplicationsController < ApplicationController
     @job = @post.job_applications.new(job_application_params)
 
     if @job.save
-      # redirect_to post_job_application_path(@post, @job), notice: "you applied this job"
       # SendConfirmationMailJob.set(wait: 1.minutes).perform_later(@job.user)
-      SendConfirmationMailJob.perform_later(@job.user)
+      SendConfirmationMailJob.perform_later(@job.user.id, @job.id)
       redirect_to post_path(@post), notice: "you applied this job"
     else
       render :new
@@ -64,7 +63,7 @@ class JobApplicationsController < ApplicationController
     authorize! :update, @job
 
     if @job.update(status: params[:status])
-      SendStatusUpdateMailJob.perform_later(@job.user) # if admin update status then send mail
+      SendStatusUpdateMailJob.perform_later(@job.user.id, @job.id)
       redirect_to post_job_application_path(@post, @job), notice: 'Job application status updated successfully.'
     else
       redirect_to post_job_application_path(@post, @job), alert: 'Failed to update the status.'
