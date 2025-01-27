@@ -19,6 +19,7 @@ class ProfilesController < ApplicationController
   def create
     @profile = Profile.new(profile_params)
     if @profile.save
+      CreateProfileJob.perform_later(@profile.user.id, @profile.id)
       redirect_to @profile
     else
       render :new

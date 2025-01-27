@@ -1,0 +1,16 @@
+<% if @profile.present? %>
+  <h1>Hello, <%= @profile.name %></h1>
+<% else %>
+  <h1>Hello, <%= @user.email %></h1>
+<% end %>
+
+<p>
+  You have successfully created your profile <br>
+  Your name: <%= @profile.name %><br>  
+  Your mobile: <%= @profile.mobile %><br>  
+  Your DOB: <%= @profile.date_of_birth %><br> 
+  Your Gender: <%= @profile.gender %><br>   
+  Your city: <%= @profile.city %><br>  
+
+</p>
+<p>Thanks for joining and have a great day!</p>

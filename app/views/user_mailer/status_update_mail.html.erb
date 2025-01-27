@@ -1,7 +1,14 @@
-<h1>Status Update mail, <%= @user.email %></h1>
-  <p>
-    Your application status changed,
-    your username is: <%= @user.email %><br>
-    Job Status: <%= @job_application.status %><br>
-  </p>
+<% if @profile.present? %>
+  <h1>Hello, <%= @profile.name %></h1>
+<% else %>
+  <h1>Hello, <%= @user.email %></h1>
+<% end %>
+
+<p>
+  Your application status update, <br>
+  Company: <%= @company.name %><br>  
+  Job Title: <%= @post.title %><br>
+  Job Location: <%= @post.location %><br>
+  Job Status: <%= @job_application.status %><br>
+</p>
 <p>Thanks for joining and have a great day!</p>
