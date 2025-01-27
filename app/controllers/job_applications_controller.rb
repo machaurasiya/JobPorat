@@ -63,7 +63,8 @@ class JobApplicationsController < ApplicationController
   def update_status
     authorize! :update, @job
 
-    if @job.update(status: params[:status]) 
+    if @job.update(status: params[:status])
+      SendStatusUpdateMailJob.perform_later(@job.user) # if admin update status then send mail
       redirect_to post_job_application_path(@post, @job), notice: 'Job application status updated successfully.'
     else
       redirect_to post_job_application_path(@post, @job), alert: 'Failed to update the status.'

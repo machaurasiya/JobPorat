@@ -10,4 +10,9 @@ class UserMailer < ApplicationMailer
     @user = user
     mail(to: @user.email, subject: 'Confirmation Mail')
   end
+
+  def status_update_mail(user)
+    @user = user
+    mail(to: @user.email, subject: 'Status Update')
+  end
 end
