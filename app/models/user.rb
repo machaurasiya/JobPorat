@@ -20,10 +20,6 @@ class User < ApplicationRecord
     self.role ||= :job_seeker
   end
 
-  # def send_welcome_email
-  #   UserMailer.welcome_email(self).deliver_now
-  # end
-
   def send_welcome_email
     # SendEmailsJob.set(wait: 1.minutes).perform_later(self)
     SendEmailsJob.perform_later(self)

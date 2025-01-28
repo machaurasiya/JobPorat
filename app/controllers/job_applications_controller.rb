@@ -12,8 +12,6 @@ class JobApplicationsController < ApplicationController
         @jobs = @post.job_applications
       end
     elsif current_user.job_seeker?
-      # @jobs = current_user.job_applications
-      # @jobs = @job_applications.where(post_id: params[:post_id])
       @jobs = current_user.job_applications.where(post: @post)
     else
       redirect_to post_job_applications_path, notice: "you are not authorised to perform this task "

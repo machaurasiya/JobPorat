@@ -4,12 +4,6 @@ class PostsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    # if params[:q].present?
-    #   @posts = Post.where("title LIKE ? OR location LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")# where for normal query 
-    # else
-    #   @posts = Post.all
-    # end
-    # @posts = Post.where("location LIKE ?", params[:q])
     @posts = params[:q].present? ? Post.search(params[:q]) : Post.all # search for elastic search query
   end
 
