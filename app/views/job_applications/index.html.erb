@@ -1,6 +1,10 @@
 <h1 class="text-center mb-4">All Job Applications</h1>
 
 <% if current_user.admin? %> 
+  <div class="container">
+    <%= link_to "Export All JobApplications", post_job_applications_path(format: 'csv'), class: 'btn btn-info btn-lg' %>
+  </div>
+
   <% @jobs.each do |job| %>
     <div class="container">
       <div class="card my-3 mx-3">
@@ -19,6 +23,9 @@
   <% end %>
 
 <% elsif current_user.employer? %> 
+  <div class="container">
+    <%= link_to "Export All JobApplications", post_job_applications_path(format: 'csv'), class: 'btn btn-info btn-lg' %>
+  </div>
   <% @jobs.each do |job| %>
     <% if job.post.user == current_user %>
       <div class="container">

@@ -7,6 +7,11 @@ class JobApplicationsController < ApplicationController
   def index
     if current_user.admin?
       @jobs = @post.job_applications.all
+      respond_to do |format|
+        format.html
+        format.csv { send_data @jobs.to_csv, filename: "jobapplication-#{DateTime.now.strftime("%d%m%Y%H%M")}.csv"}
+        # format.csv { send_data JobApplication.to_csv, filename: "jobapplication-#{DateTime.now.strftime("%d%m%Y%H%M")}.csv"}
+      end
     elsif current_user.employer?
       if @post.user_id == current_user.id
         @jobs = @post.job_applications
