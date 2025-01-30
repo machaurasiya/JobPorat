@@ -4,11 +4,15 @@ class PostsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @posts = params[:q].present? ? Post.search(params[:q]) : Post.all # search for elastic search query
+    # @posts = params[:q].present? ? Post.search(params[:q]) : Post.all # search for elastic search query
+    if params[:company_id].present?
+      @posts = params[:q].present? ? Post.where(company_id: params[:company_id]).search(params[:q]) : Post.where(company_id: params[:company_id])
+    else
+      @posts = params[:q].present? ? Post.search(params[:q]) : Post.all
+    end
   end
 
   def show
-    Rails.logger.debug "Params: #{params.inspect}"
   end
 
   def new
