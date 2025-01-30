@@ -59,8 +59,8 @@ gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'carrierwave', '~> 3.0'
 gem 'sidekiq'
-gem 'redis'
-gem 'redis-rails'
+# gem 'redis'
+# gem 'redis-rails'
 
 
 group :development, :test do

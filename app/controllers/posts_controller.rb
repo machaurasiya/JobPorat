@@ -39,13 +39,13 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to post_path, status: :see_other
+    redirect_to posts_path, status: :see_other
   end
 
   private
   
   def post_params
-    params.require(:post).permit(:user_id, :title, :description, :salary, :location)
+    params.require(:post).permit(:user_id, :title, :description, :salary, :location, :company_id)
   end
 
   def set_post

@@ -25,6 +25,11 @@
     </div>
 
     <div class="mb-3">
+      <%= form.label :company_id, "Company:", class: "form-label" %>
+      <%= form.collection_select :company_id, Company.all, :id, :name, {include_blank: "Select a company"},  class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
       <%= form.submit "Submit", class: "btn btn-primary" %>
     </div>
   </div>

@@ -9,6 +9,7 @@ class Ability
     if user.admin?
       can :manage, :all  
       can :manage, :Company, user_id: user.id
+      # can :manage, :Company
     elsif user.employer?
       can :read, JobApplication, post: { user_id: user.id }
       can :update, JobApplication, post: { user_id: user.id }
