@@ -11,5 +11,7 @@ Rails.application.routes.draw do
   end
   
   resources :profiles
-  resources :companies
+  resources :companies do
+    resources :posts, only: [:index]
+  end
 end

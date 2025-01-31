@@ -5,5 +5,10 @@
       <h5 class="card-title"><strong>Title:</strong><%= @company.name %></h5>
       <p class="card-text"><strong>Description:</strong> <%= @company.about %></p>
     </div>
+    <div class="card-body my-3 mx-3">
+      <% if can? :read, Post %>
+        <%= link_to 'See Company Post', company_posts_path(@company.id), class: 'btn btn-primary' %>
+      <% end %>
+    </div>
   </div>
 </div>    

@@ -7,6 +7,17 @@
         <h5 class="card-title"><%= company.name %></h5>
         <p class="card-text"><%= company.about %></p>
       </div>
+      <div class="card-body my-3 mx-3">
+        <% if can? :read, Company %>
+          <%= link_to 'See Company', company_path(company.id), class: 'btn btn-primary' %>
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>
+
+<div class="container">
+  <% if can? :create, Company %>
+    <%= link_to 'Create a Company', new_company_path, class: 'btn btn-success btn-lg' %>
+  <% end %>
+</div>
